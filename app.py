@@ -21,6 +21,7 @@ google = oauth.register(
 @app.route('/')
 def homepage():
     user = session.get('user')
+    print(user)
     return render_template('home.html', user=user)
 
 
