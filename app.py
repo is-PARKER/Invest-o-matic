@@ -22,6 +22,7 @@ google = oauth.register(
 def homepage():
     user = session.get('user')
     print(user)
+    print()
     return render_template('home.html', user=user)
 
 
@@ -33,7 +34,11 @@ def login():
 @app.route('/auth')
 def auth():
     token = oauth.google.authorize_access_token()
+    print(f"This si Token:{token}")
+    print()
     user = token.get('userinfo')
+    print(f"This is user:{user}")
+    print()
     if user:
         session['user'] = user
     return redirect('/')
