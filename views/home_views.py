@@ -17,5 +17,5 @@ def index_home():
 
 @blueprint.route('/about')
 def about_site():
-    vm = ViewModelBase()
+    vm = IndexViewModel()
     return render_template('home/about.html', **vm.to_dict())

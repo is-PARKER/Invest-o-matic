@@ -1,6 +1,6 @@
 from typing import Optional, List
 
-from passlib.handlers.sha2_crypt import sha512_crypt as crypto
+
 import data.__db_session as db_session
 from data.users import User
 

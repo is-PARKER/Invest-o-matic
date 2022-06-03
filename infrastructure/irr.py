@@ -76,6 +76,8 @@ def irr_process(yearly_invest_array: list,yearly_return_array: list) -> float:
     irr_float = numfi.irr(irr_inputs)
     print(irr_float)
 
-yearly_invest_array, yearly_return_array = create_lists(months_until_completion=14,term_of_asset=8,yearly_return_amount=200_000,investment=10_000)
+    return irr_inputs, irr_float
 
-irr_process(yearly_invest_array=yearly_invest_array,yearly_return_array=yearly_return_array)
+# yearly_invest_array, yearly_return_array = create_lists(months_until_completion=14,term_of_asset=8,yearly_return_amount=200_000,investment=10_000)
+
+# irr_process(yearly_invest_array=yearly_invest_array,yearly_return_array=yearly_return_array)

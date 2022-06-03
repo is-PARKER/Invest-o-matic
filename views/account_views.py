@@ -4,15 +4,15 @@ from flask import Request
 from flask import render_template
 
 
-from infrastructure.forms import RegisterUserForm, LoginForm
-from infrastructure.cookie_auth import set_auth_username, logout_username
-from services import user_service
-
-
-
-from viewmodels.account.index_viewmodel import IndexViewModel
-from viewmodels.account.register_viewmodel import RegisterViewModel
-from viewmodels.account.login_viewmodel import LoginViewmodel
+# from infrastructure.forms import RegisterUserForm, LoginForm
+# from infrastructure.cookie_auth import set_auth_username, logout_username
+# from services import user_service
+# 
+# 
+# 
+# from viewmodels.account.index_viewmodel import IndexViewModel
+# from viewmodels.account.register_viewmodel import RegisterViewModel
+# from viewmodels.account.login_viewmodel import LoginViewmodel
 from viewmodels.shared.viewmodelbase import ViewModelBase
 
 

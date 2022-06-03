@@ -18,6 +18,6 @@ class Models(Base):
     private_setting = sqlalchemy.Column(sqlalchemy.BINARY, default=False)
 
 
-    irr = relationship("IRR")
+    irr = relationship("IRR",backref="models")
   
 

@@ -14,4 +14,4 @@ class User(Base):
     last_login = sqlalchemy.Column(sqlalchemy.DateTime())
     private_models = sqlalchemy.Column(sqlalchemy.BINARY, default=False)
 
-    models = relationship("Models")
+    models = relationship('Models', backref='user')
