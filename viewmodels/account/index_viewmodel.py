@@ -10,4 +10,4 @@ class IndexViewModel(ViewModelBase):
     def __init__(self):
         super().__init__()
         
-        self.user = find_user_by_google_sub_id(self.user) # Have to check how the User is returned.
+        self.user = find_user_by_google_sub_id(self.user_dict['sub']) # Have to check how the User is returned.

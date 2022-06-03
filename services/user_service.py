@@ -24,7 +24,7 @@ def find_user_by_email(email: str) -> Optional[User]:
 
 def create_user(email: str, google_sub_id: str ) -> Optional[User]:
 
-    if find_user_by_email(email=email):
+    if find_user_by_google_sub_id(google_sub_id):
         return None
 
     user = User()

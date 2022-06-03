@@ -1,0 +1,20 @@
+% extends "shared/_layout.html" %}
+{% block title %}About Cricket{% endblock %}
+
+{% block main_content %}
+    <h1>Review: {{ irr.project_name }}</h1>
+    <h3>by  </h3>
+
+    <div>
+        <p>{{ irr.project_name }}</p>
+        <p>{{ irr.project_desc }}</p>
+        <p>{{ irr.model_type }}</p>
+        <p>Months until Completion: {{ irr.comp_month }}</p>
+        <p>length of asset Term: {{ irr.asset_term }}</p>
+
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+<!-- this would be css from about.html -->
+{% endblock %}
