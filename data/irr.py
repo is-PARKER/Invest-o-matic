@@ -1,5 +1,6 @@
 from email.policy import default
 from enum import unique
+from pickle import FALSE
 import sqlalchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
@@ -15,7 +16,7 @@ class IRR(Base):
     project_name = sqlalchemy.Column(sqlalchemy.Text)
     project_desc = sqlalchemy.Column(sqlalchemy.Text)
     model_type = sqlalchemy.Column(sqlalchemy.Text, default="IRR")
-    private_setting = sqlalchemy.Column(sqlalchemy.BINARY, default=False)
+    private_setting = sqlalchemy.Column(sqlalchemy.BINARY, default=FALSE)
     date_created = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.now() ,nullable=False)
 
     comp_month  = sqlalchemy.Column(sqlalchemy.Integer, default=0, nullable=False)

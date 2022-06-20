@@ -1,5 +1,6 @@
+from datetime import datetime
 from typing import Optional, List
-
+from datetime import datetime
 
 import data.__db_session as db_session
 from data.users import User
@@ -30,6 +31,7 @@ def create_user(email: str, google_sub_id: str ) -> Optional[User]:
     user = User()
     user.email = email
     user.google_sub_id = google_sub_id
+    user.created_date=datetime.now()
 
     session = db_session.create_session()
 

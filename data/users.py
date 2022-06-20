@@ -1,3 +1,4 @@
+from pickle import FALSE
 import sqlalchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
@@ -12,6 +13,6 @@ class User(Base):
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime())
     last_login = sqlalchemy.Column(sqlalchemy.DateTime())
-    private_models = sqlalchemy.Column(sqlalchemy.BINARY, default=False)
+    private_models = sqlalchemy.Column(sqlalchemy.BINARY, default=FALSE)
 
     models = relationship('Models', backref='user')

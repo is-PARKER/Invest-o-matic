@@ -17,7 +17,7 @@ class ReviewIRRViewModel(ViewModelBase):
             from services import model_service
             self.irr = model_service.find_irr_model_by_model_id(self.model_id)
             if not self.irr:
-                return None
+                self.irr = None
 
 
         else:

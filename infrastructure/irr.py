@@ -78,6 +78,14 @@ def irr_process(yearly_invest_array: list,yearly_return_array: list) -> float:
 
     return irr_inputs, irr_float
 
+def create_chart_array(irr_array:list) -> list:
+    chart_array = []
+    start = 1
+    for i in irr_array:
+        chart_array.append((start,i))
+        start += 1
+    
+    return chart_array
 # yearly_invest_array, yearly_return_array = create_lists(months_until_completion=14,term_of_asset=8,yearly_return_amount=200_000,investment=10_000)
 
 # irr_process(yearly_invest_array=yearly_invest_array,yearly_return_array=yearly_return_array)

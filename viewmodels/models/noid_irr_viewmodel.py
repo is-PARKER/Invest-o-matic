@@ -10,7 +10,7 @@ from services.user_service import find_user_by_google_sub_id
 # Add user service.
 from viewmodels.shared.viewmodelbase import ViewModelBase
 
-class IRRViewModel(ViewModelBase):
+class NoID_IRRViewModel(ViewModelBase):
     def __init__(self):
         super().__init__()
 
@@ -27,6 +27,3 @@ class IRRViewModel(ViewModelBase):
         self.return_array: Optional[list] = None
         self.invest_array: Optional[list] = None
         self.irr_array: Optional[list] = None
-
-        user_class = find_user_by_google_sub_id(google_sub_id=self.google_sub_id)
-        self.user_id = user_class.user_id

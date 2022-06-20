@@ -36,7 +36,7 @@ def create_irr_model(vm) -> Optional[User]:
     # irr.invest_array = vm.invest_array
     # irr.irr_array = vm.irr_array
 
-    irr.irr = vm.invest.amt
+    irr.irr = vm.irr
     
 
     try:
@@ -62,7 +62,7 @@ def find_models():
     session = db_session.create_session()
 
     try:
-        models = list(session.query(Models)).order_by(Models.model_id.desc)
+        models = list(session.query(Models))
         return models
     finally:
         session.close()

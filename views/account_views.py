@@ -1,19 +1,11 @@
-from crypt import methods
+
 import flask
-from flask import Request
-from flask import render_template
+from flask import Request, session, redirect, url_for
+from flask import render_template, Blueprint
+from authlib.integrations.flask_client import OAuth
+from services.user_service import create_user, find_user_by_google_sub_id
 
 
-# from infrastructure.forms import RegisterUserForm, LoginForm
-# from infrastructure.cookie_auth import set_auth_username, logout_username
-# from services import user_service
-# 
-# 
-# 
-# from viewmodels.account.index_viewmodel import IndexViewModel
-# from viewmodels.account.register_viewmodel import RegisterViewModel
-# from viewmodels.account.login_viewmodel import LoginViewmodel
-from viewmodels.shared.viewmodelbase import ViewModelBase
 
 
 
@@ -22,96 +14,37 @@ blueprint = flask.Blueprint('account', __name__, template_folder='templates')
 
 @blueprint.route('/account')
 def index():
+    from viewmodels.account.index_viewmodel import IndexViewModel
     vm = IndexViewModel()
-    print(vm.username)
-    if not vm.username:
-        return flask.redirect('/account/login')
-        
+    vm.db_user.created_date_day = vm.db_user.created_date.date()
+
     return render_template('account/index.html', **vm.to_dict())
 
 
-### Register ###
-@blueprint.route('/account/register', methods=['GET'])
-def register_get():
-    vm = RegisterViewModel()
-    request_form = vm.request.form
-    form = RegisterUserForm(request_form)
-    vm.form = form
+@blueprint.route('/account/login')
+def login():
+    from infrastructure.oauth import oauth
 
-    return render_template('account/register.html', **vm.to_dict())
+    redirect_uri = url_for('account.auth', _external=True)
+    return oauth.google.authorize_redirect(redirect_uri)
 
-@blueprint.route('/account/register', methods=['POST'])
-def register_post():
-    vm = RegisterViewModel()
-    request_form = vm.request.form
-    form = RegisterUserForm(request_form)
-    vm.form = form
+@blueprint.route('/account/auth')
+def auth():
+    from infrastructure.oauth import oauth
 
-    if form.validate():
-        vm.username = form.username.data
-        vm.email = form.email.data
-        vm.password = form.password.data
+    token = oauth.google.authorize_access_token()
+    user = token.get('userinfo')
+    email = user['email']
+    google_sub_id = user['sub']
+    if not find_user_by_google_sub_id(google_sub_id):
+        create_user(email=email,google_sub_id=google_sub_id)
 
-        user = user_service.create_user(form.username.data,form.email.data,form.password.data)
-
-        if not user:
-            vm.error = "User Invalid!"
+    if user:
+        session['user'] = user
     
-        resp = flask.redirect('/account')
-        set_auth_username(resp,vm.username)
-        
-        return resp
-    
-    return render_template('account/register.html', **vm.to_dict())
-
-
-
-### Login ###
-@blueprint.route('/account/login', methods=['GET'])
-def login_get():
-    vm = LoginViewmodel()
-    if vm.username:
-        resp = flask.redirect('/account')
-        return resp
-
-    request_form = vm.request.form
-    form = LoginForm(request_form)
-    vm.form = form
-
-    return render_template('account/login.html', **vm.to_dict())
-
-@blueprint.route('/account/login', methods=['POST'])
-def login_post():
-
-    vm = LoginViewmodel()
-    
-    request_form = vm.request.form
-    form = LoginForm(request_form)
-
-    if form.validate():
-        vm.username = form.username.data
-        vm.password = form.password.data
-
-        user = user_service.login_user(form.username.data, form.password.data)
-
-        if not user:
-            vm.error = "User Invalid!"
-       
-        else:
-            resp = flask.redirect('/account')
-            set_auth_username(resp, user.username)
-            return resp
-
-    vm.form = form
-
-    return render_template('account/login.html', **vm.to_dict())
-
-
-### Logout ###
+    return redirect('/')
 
 @blueprint.route('/account/logout')
 def logout():
-    resp = flask.redirect('/')
-    logout_username(resp)
-    return resp
-            
+    session.pop('user', None)
+    return redirect('/')

@@ -4,7 +4,7 @@ from flask import render_template
 
 
 from viewmodels.home.index_viewmodel import IndexViewModel
-from viewmodels.shared.viewmodelbase import ViewModelBase
+
 
 blueprint = flask.Blueprint('home', __name__, template_folder='templates')
 

@@ -3,7 +3,7 @@
 
 {% block main_content %}
     <div class="pages">
-        <h1>Review: {{ irr.project_name }}</h1>
+        <h1>Review: {{ project_name }}</h1>
     </div>
     <canvas id="irr_chart"  ></canvas>
     <script>
@@ -72,13 +72,12 @@
         <h5 class="card-header"> IRR Results <h5>
         <div class="card-body">
 
-        <p><span class="title-span">Project Name:</span> {{ irr.project_name }}</p>
-        <p><span class="title-span">Internal Rate of Return:</span> {{ irr.irr }}</p>
+        <p><span class="title-span">Project Name:</span> {{ project_name }}</p>
+        <p><span class="title-span">Internal Rate of Return:</span> {{ irr }}</p>
         <p><span class="title-span">Net Return:</span> ${{ net_return }}</p>
-        <p><span class="title-span">Description:</span> {{ irr.project_desc }}</p>
-        <p><span class="title-span">Model Type:</span> {{ irr.model_type }}</p>
-        <p><span class="title-span">Months until Completion:</span> {{ irr.comp_month }}</p>
-        <p><span class="title-span">Length of Asset Term:</span> {{ irr.asset_term }}</p>
+        <p><span class="title-span">Description:</span> {{ project_desc }}</p>
+        <p><span class="title-span">Months until Completion:</span> {{ comp_month }}</p>
+        <p><span class="title-span">Length of Asset Term:</span> {{ asset_term }}</p>
         </div>    
     </div>
 {% endblock %}

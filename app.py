@@ -21,19 +21,6 @@ app.config.from_object('config')
 
 
 
-# oauth config
-CONF_URL = 'https://accounts.google.com/.well-known/openid-configuration'
-oauth = OAuth(app)
-google = oauth.register(
-    name='google',
-    server_metadata_url=CONF_URL,
-    client_kwargs={
-        'scope':'openid profile email'
-        },
-)
-
-
-
 def main():
     configure()
     app.run(debug=True, port=5006)
