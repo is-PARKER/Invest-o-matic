@@ -1,0 +1,92 @@
+{% extends "shared/_layout.html" %}
+{% block title %}Nif.T: Project Review{% endblock %}
+
+{% block main_content %}
+    <div class="pages">
+        <h1>Review: {{ project_name }}</h1>
+    </div>
+    <canvas id="irr_chart"  ></canvas>
+    <script>
+        var ctx= document.getElementById("irr_chart").getContext("2d");
+        var irr_chart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: {{ labels | safe }},
+                datasets: [{
+                    data: {{ values | safe }},
+                    backgroundColor:{{ bar_color | safe }}
+                    }]
+                },
+            options: {
+                plugins:{
+                    legend:{
+                        display:false,
+                    },
+                    title:{
+                        display:true,
+                        color:'rgb(0, 62, 77)',
+                        text:'Yearly Cashflow',
+                        font:{
+                            size: '24px'
+                        }
+                    }
+                },
+                responsive: false,
+                scales: {
+                    y: {
+                        title:{
+                            text:'Cashflow for Year',
+                            display:true,
+                            color:'rgb(0,62,77)',
+                            font:{
+                                size: '20px'
+                            }
+                            },
+                        ticks:{
+                            callback: function(value, index, ticks){
+                                return '$' + value
+                            }
+                        }
+                    },
+                    x: {
+                        title:{
+                            text:'Year of Project',
+                            display:true,
+                            color:'rgb(0,62,77',
+                            font:{
+                                size:'20px'
+                                }
+                            },
+                        ticks:{
+                            callback: function(value, index, ticks){
+                                return 'Year ' + value
+                                }
+                            }
+                        }
+                    }   
+                }
+
+            }); 
+        </script>
+    <div class="results-card rounded">
+        <h5 class="card-header"> IRR Results <h5>
+        <div class="card-body">
+
+        <p><span class="title-span">Project Name:</span> {{ project_name }}</p>
+        <p><span class="title-span">Internal Rate of Return:</span> {{ irr }}</p>
+        <p><span class="title-span">Net Return:</span> ${{ net_return }}</p>
+        <p><span class="title-span">Description:</span> {{ project_desc }}</p>
+        <p><span class="title-span">Months until Completion:</span> {{ comp_month }}</p>
+        <p><span class="title-span">Length of Asset Term:</span> {{ asset_term }}</p>
+        </div>    
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+<!-- this would be css from about.html -->
+
+{% endblock %}
+
+{% block additional_js %}
+
+{% endblock %}

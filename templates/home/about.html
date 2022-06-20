@@ -1,0 +1,19 @@
+{% extends "shared/_layout.html" %}
+{% block title %}About Nif.T{% endblock %}
+
+{% block main_content %}
+
+<div class="about">
+    <h1>About Nif.T</h1>
+
+    <div class="body-text rounded">
+        <p>The Nif.T website is a prototype web application for project modeling and storage. As a proof of concept Nif.T shows that user authentication, using a client's chosen office suite such as google, can be used to integrate company web applications. By generating models and storing in a PostgreSQL, companies can simplify project intake, validation and organization for later retrieval. </p>
+        <p> Internal Rate of Return was chosen as the most basic model to impliment in a web application because the financial scheduling involved often is done within Excel, but projects have the potential to be better managed within a programmatic solution. Additionally, companies should look for solutions that organize information more readily for analysis and manipulation in project management software. The next step for Nif.T is integration into existing project portfolio management tools by accessing the PostgreSQL database. </p>
+
+    </div>
+</div>   
+{% endblock %}
+
+{% block additional_css %}
+<!-- this would be css from about.html -->
+{% endblock %}

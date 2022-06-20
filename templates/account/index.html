@@ -1,0 +1,19 @@
+{% extends "shared/_layout.html" %}
+{% block title %} Nif.t Account {% endblock %}
+
+{% block main_content %}
+    <div class="pages">
+        <h1>Account: {{ db_user.email }}</h1>
+    </div>
+    <div class="account-card rounded">
+        <h5 class="card-header">Account Details</h5>
+        <div class="card-body">
+            <p><span class="title-span">User ID: </span>{{ db_user.user_id }}<p>
+            <p><span class="title-span"> Created Date:</span> {{ db_user.created_date_day }}<p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+<!-- this would be css from about.html -->
+{% endblock %}

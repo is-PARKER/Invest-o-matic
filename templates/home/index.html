@@ -1,0 +1,22 @@
+{% extends "shared/_layout.html" %}
+{% block main_content %}
+
+    <div class="hero">
+        <div class="hero-inner">
+            <h1> Calculate your project's return. 
+                <br> See your project's future. </h1>
+        </div>
+    </div>
+    <div class="subtitle">
+        <p> Nif.T is a project modeling tool that can measure the return on investment. Nif.T is designed to help companies quickly gauge a project's value and save that project to an internal database for later retrieval. <p>
+
+        <p>Head to <a link href="/models"> View Models </a> Get a list of the recent projects.</p>
+        {% if google_sub_id %}
+        <p><a href="/models/createirr"> Calculate a projects IRR.</a></p>
+        {% else %}
+        <p><a href="/account/login">Login with Google</a> to create and save project models.</p>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

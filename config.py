@@ -1,4 +1,12 @@
 import os
+from pickle import TRUE
 
-GOOGLE_CLIENT_ID = '599701358759-eaj7oc95gvf7gdfjc6ksf7hl99hvaboq.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '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'
+import dotenv
+
+dotenv.load_dotenv('/Users/pk/Documents/GitHub/Invest-o-matic/.env')
+
+
+
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
+DATABASE_URL = os.getenv('DATABASE_URL'

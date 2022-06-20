@@ -1,0 +1,36 @@
+{% extends "shared/_layout.html" %}
+{% block title %} Nif.T: Project Models {% endblock %}
+
+{% block main_content %}
+    <div class="pages">
+        <h1>List of Models</h1>
+    </div>
+    <div class="table">
+        <table>
+            <tr class="rounded">    
+                <th> Model ID </th>
+                <th> Project Name </th>
+                <th> Project Type </th>
+                <th> Date Created </th>
+                <th> Open </th>
+            </tr>
+            {% for m in models %}
+                <tr>
+                    <td> {{ m.model_id }}</td>
+                    <td>{{ m.project_name }}</td>
+                    <td>{{ m.type }}</td>
+                    <td>{{ m.date_created}}</td>
+                    <td>
+                    {% if m.type == "IRR" %}     
+                        <a href = "/models/reviewirr/{{ m.model_id }}"> View </a> </td>
+                    {% else %}
+                        Other View
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}
+
+{% block additional_css %}
+<!-- this would be css from about.html -->
+{% endblock %}
