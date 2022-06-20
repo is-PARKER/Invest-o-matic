@@ -1,7 +1,9 @@
 from logging import raiseExceptions
+import ssl
 import sqlalchemy as sqal
 from sqlalchemy import orm
 from sqlalchemy.orm import Session
+
 
 from data.modelbase import Base
 
@@ -17,7 +19,7 @@ def database_init(connection: str):
 
     if not connection:
         return raiseExceptions("The connection path has not been passed to the database_init")
-
+    
     engine = sqal.engine.create_engine(connection)
     __session = orm.sessionmaker(engine, expire_on_commit=False)
     

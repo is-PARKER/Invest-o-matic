@@ -32,9 +32,9 @@ def create_irr_model(vm) -> Optional[User]:
     irr.yearly_return = vm.yearly_return
     irr.invest_amt = vm.invest_amt
 
-    # irr.return_array = vm.return_array
-    # irr.invest_array = vm.invest_array
-    # irr.irr_array = vm.irr_array
+    irr.return_array = vm.return_array
+    irr.invest_array = vm.invest_array
+    irr.irr_array = vm.irr_array
 
     irr.irr = vm.irr
     

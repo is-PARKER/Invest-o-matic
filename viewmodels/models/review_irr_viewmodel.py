@@ -21,5 +21,5 @@ class ReviewIRRViewModel(ViewModelBase):
 
 
         else:
-            self.error = "Game is not created"        
+            self.error = "Model is not created"        
 

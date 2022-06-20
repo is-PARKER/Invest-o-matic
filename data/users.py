@@ -1,4 +1,5 @@
-from pickle import FALSE
+from email.policy import default
+
 import sqlalchemy
 from sqlalchemy import Table, Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
@@ -12,7 +13,7 @@ class User(Base):
     google_sub_id = sqlalchemy.Column(sqlalchemy.Text,unique=True, nullable=False)
     email = sqlalchemy.Column(sqlalchemy.String, index=True, unique=True, nullable=True)
     created_date = sqlalchemy.Column(sqlalchemy.DateTime())
-    last_login = sqlalchemy.Column(sqlalchemy.DateTime())
-    private_models = sqlalchemy.Column(sqlalchemy.BINARY, default=FALSE)
+    last_login = sqlalchemy.Column(sqlalchemy.DateTime(), default=None)
+    private_models = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
     models = relationship('Models', backref='user')

@@ -5,6 +5,8 @@ import os
 import sys
 import psycopg2
 import sqlalchemy
+from config import DATABASE_URL
+from infrastructure.connection_fix import replace_postgres
 
 # from config import DATABASE_URL
 
@@ -33,12 +35,16 @@ def configure():
 
 def setup_db(): 
 
-    this_folder = os.path.dirname(os.path.abspath(__file__))
-    SQL_lite_connection = "sqlite:////" + os.path.join(this_folder,'db','test.sqlite')
+    #this_folder = os.path.dirname(os.path.abspath(__file__))
+    #SQL_lite_connection = "sqlite:////" + os.path.join(this_folder,'db','test.sqlite')
 
     # conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
-    db_session.database_init(SQL_lite_connection)
+    db_url_fixed = replace_postgres(DATABASE_URL)
+
+    conn = db_url_fixed + "?sslmode=require"
+
+    db_session.database_init(conn)
 
 def register_blueprints():
 

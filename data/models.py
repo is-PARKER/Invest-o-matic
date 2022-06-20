@@ -1,7 +1,6 @@
 from contextlib import nullcontext
-from pickle import FALSE
 import sqlalchemy
-from sqlalchemy import Table, Column, Integer, ForeignKey
+from sqlalchemy import Table, Column, Integer, ForeignKey, false
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
@@ -16,7 +15,7 @@ class Models(Base):
     project_desc = sqlalchemy.Column(sqlalchemy.Text)
     date_created = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.now() ,nullable=False)
     type = sqlalchemy.Column(sqlalchemy.Text, default="IRR")
-    private_setting = sqlalchemy.Column(sqlalchemy.BINARY, default=FALSE)
+    private_setting = sqlalchemy.Column(sqlalchemy.Boolean, default=False)
 
 
     irr = relationship("IRR",backref="models")

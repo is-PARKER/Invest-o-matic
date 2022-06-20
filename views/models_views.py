@@ -4,7 +4,7 @@ from flask import Request, jsonify, render_template, session, url_for
 
 from infrastructure import irr
 from infrastructure.other_calculations import get_net_return
-from services.model_service import create_irr_model
+from services.model_service import create_irr_model, find_irr_model_by_model_id
 
 from viewmodels.models.irr_viewmodel import IRRViewModel
 from viewmodels.models.review_irr_viewmodel import ReviewIRRViewModel
@@ -166,31 +166,19 @@ def review_irr(model_id:int):
     if not vm.irr:
         return flask.abort(status=404)
 
-    
+
 
 
     vm.irr.irr = round(vm.irr.irr,2)
 
 
-    vm.irr_array = [
-        (1,-20000),
-        (2,-500),
-        (3,4000),
-        (4,80000),
-        (5,40000),
-        (6,30000),
-        (7,20000),
-        (8,40000),
-        (9,20000),
-        (10,40000)
-    ]
-
-
+    vm.chart_array = irr.create_chart_array(irr_array=vm.irr.irr_array)
 
     print(vm.model_id)
+    print(vm.chart_array)
 
-    labels = [row[0] for row in vm.irr_array]
-    values = [row[1] for row in vm.irr_array]
+    labels = [row[0] for row in vm.chart_array]
+    values = [row[1] for row in vm.chart_array]
 
     net_return = get_net_return(values)
 
